@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Back-end') {
       agent {
-        docker { image 'maven:3.8.1-adoptopenjdk-11' }
+        docker { image 'maven:3.9.9-eclipse-temurin-17' }
       }
       steps {
         sh 'mvn --version'
@@ -11,10 +11,18 @@ pipeline {
     }
     stage('Front-end') {
       agent {
-        docker { image 'node:16-alpine' }
+        docker { image 'node:alpine:3.19' }
       }
       steps {
         sh 'node --version'
+      }
+    }
+    stage('Database'){
+      agent{
+        docker { image 'oraclelinux:9' }
+      }
+      steps{
+        sh 'echo "oracle DB installed"'
       }
     }
   }
