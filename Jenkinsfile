@@ -11,7 +11,7 @@ pipeline {
     }
     stage('Front-end') {
       agent {
-        docker { image 'node:alpine:3.19' }
+        docker { image 'node:23-alpine' }
       }
       steps {
         sh 'node --version'
